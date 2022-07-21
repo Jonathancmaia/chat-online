@@ -1,0 +1,19 @@
+#chatContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.userMessage {
+  align-self: flex-end;
+  flex-direction: row;
+  align-items: center;
+}
+
+#sendButton {
+  width: 10%;
+}
+
+#messageField {
+  width: 87%;
+}

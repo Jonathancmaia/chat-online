@@ -1,0 +1,14 @@
+#videoGrid {
+  display: flex;
+  flex-direction: row;
+}
+
+.videoContainer {
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+}
+
+.videoId {
+  position: absolute;
+}
