@@ -17,7 +17,8 @@ function VideoGrid(props){
       user, {
         host: 'localhost',
         port: 9000,
-        path: '/'
+        path: '/',
+        debug: true
       }
     );
 
