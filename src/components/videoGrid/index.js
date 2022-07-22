@@ -15,7 +15,8 @@ function VideoGrid(props){
     //Peerjs setup
     const peer = new Peer(
       user, {
-        host: '/'
+        host: "myappname.herokuapp.com",
+        secure: true
       }
     );
 
