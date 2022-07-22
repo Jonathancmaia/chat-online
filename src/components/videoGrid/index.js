@@ -13,11 +13,12 @@ function VideoGrid(props){
 
   useEffect(()=>{
     //Peerjs setup
-    const peer = new Peer(
-      user, {
-        debug: true
-      }
-    );
+    const peer = new Peer(user,{
+      host: 'api-chat-online.herokuapp.com',
+      port: 9000,
+      path: '/peerjs',
+      debug: 2
+    });
 
     //Set user media
     navigator.mediaDevices.getUserMedia({
