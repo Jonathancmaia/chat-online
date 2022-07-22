@@ -15,8 +15,9 @@ function VideoGrid(props){
     //Peerjs setup
     const peer = new Peer(
       user, {
-        host: 'https://chat-online-byjonathancmaia.herokuapp.com',
-        path: '/'
+        secure: true, 
+        host: 'chat-online-byjonathancmaia.herokuapp.com', 
+        port: 443,
       }
     );
 
