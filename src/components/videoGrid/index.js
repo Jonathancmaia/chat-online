@@ -15,6 +15,7 @@ function VideoGrid(props){
     //Peerjs setup
     const peer = new Peer(
       user, {
+        debug: true,
         host: '/'
       }
     );
