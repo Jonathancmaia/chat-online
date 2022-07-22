@@ -1,5 +1,6 @@
 import React, {useEffect, useContext} from 'react';
 import { Peer } from 'peerjs';
+const { PeerServer } = require('peer');
 import { IoContext } from '../room/index.js';
 import { style } from './style.css';
 
@@ -15,7 +16,6 @@ function VideoGrid(props){
     //Peerjs setup
     const peer = new Peer(
       user, {
-        host: "chat-online-byjonathancmaia.herokuapp.com",
         secure: true
       }
     );
