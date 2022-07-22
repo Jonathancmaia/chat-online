@@ -17,7 +17,7 @@ function VideoGrid(props){
       user, {
         host: 'api-chat-online.herokuapp.com',
         path: '/peerjs',
-        secure: true,
+        port: 9000,
         debug: true
       }
     );
