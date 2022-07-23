@@ -14,9 +14,9 @@ function VideoGrid(props){
   useEffect(()=>{
     //Peerjs setup
     const peer = new Peer(user,{
-      host: 'api-chat-online.herokuapp.com',
-      port: 9000,
-      path: '/peerjs',
+      host: 'localhost',
+      path: '/',
+      port: 8000,
       debug: 2
     });
 

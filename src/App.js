@@ -8,7 +8,7 @@ function App() {
   const [response, setResponse] = useState(false);
 
   useEffect(()=>{
-    axios.get('https://api-chat-online.herokuapp.com/').then( res => {
+    axios.get('http://ec2-52-67-147-64.sa-east-1.compute.amazonaws.com:8080/').then( res => {
       setResponse(`/${res.data}`);
     });
   },[]);
