@@ -14,7 +14,7 @@ function VideoGrid(props){
   useEffect(()=>{
     //Peerjs setup
     const peer = new Peer(user,{
-      host: 'free-chat-online.cf',
+      host: 'localhost',
       path: 'peerjs',
       port: 8000,
       secure: false,
