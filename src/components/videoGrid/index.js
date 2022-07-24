@@ -15,7 +15,7 @@ function VideoGrid(props){
     //Peerjs setup
     const peer = new Peer(user,{
       host: 'http://www.free-chat-online.cf/',
-      path: '/',
+      path: '/peerjs',
       port: 8000,
       debug: 2
     });
