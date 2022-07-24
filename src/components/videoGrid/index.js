@@ -16,6 +16,7 @@ function VideoGrid(props){
     const peer = new Peer(user,{
       host: '/',
       path: 'peerjs',
+      port: 8000,
       secure: false,
       debug: true
     });
