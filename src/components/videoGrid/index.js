@@ -25,7 +25,8 @@ function VideoGrid(props){
       video: {
         width: 300,
         height: 300,
-        facingMode: 'user'
+        facingMode: 'user',
+        debug: true
       }
     }).then( stream => {
       addVideo(stream, user);
