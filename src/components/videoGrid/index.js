@@ -16,7 +16,9 @@ function VideoGrid(props){
     const peer = new Peer(user, {
       host: 'free-chat-online.cf',
       port: 9000,
-      path: '/'
+      path: '/',
+      secure: false,
+      debug: true
     });
 
     //Set user media
@@ -25,8 +27,7 @@ function VideoGrid(props){
       video: {
         width: 300,
         height: 300,
-        facingMode: 'user',
-        secure: false
+        facingMode: 'user'
       }
     }).then( stream => {
       addVideo(stream, user);
