@@ -8,7 +8,7 @@ function App() {
   const [response, setResponse] = useState(false);
 
   useEffect(()=>{
-    axios.get('http://www.free-chat-online.cf:8080/').then( res => {
+    axios.get('http://free-chat-online.cf:7000').then( res => {
       setResponse(`/${res.data}`);
     });
   },[]);

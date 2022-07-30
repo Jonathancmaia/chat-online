@@ -19,7 +19,7 @@ function Room (){
   useEffect(()=>{
 
     //Socket connection
-    const socket = io.connect('http://www.free-chat-online.cf:8080/', {query: {"room": room}});
+    const socket = io.connect('http://free-chat-online.cf:7000', {query: {"room": room}});
     setSocket(socket);
 
     //Socket event emitters
