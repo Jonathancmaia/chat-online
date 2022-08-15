@@ -2,6 +2,7 @@ import React, {useEffect, useContext} from 'react';
 import { Peer } from 'peerjs';
 import { IoContext } from '../room/index.js';
 import { style } from './style.css';
+import Enviroment from '../../config.js';
 
 function VideoGrid(props){
 
@@ -14,16 +15,48 @@ function VideoGrid(props){
   useEffect(()=>{
     //Peerjs setup
     const peer = new Peer(user, {
-      host: 'free-chat-online.cf',
+      host: Enviroment.peerServer,
       port: 9000,
       path: '/',
       secure: false,
       debug: true
     });
 
+    //Start videos events
+    document.addEventListener('addedVideo', (e)=>{
+      let userVideo = e.detail.user;
+      let video = document.getElementById(e.detail.user).getElementsByTagName('video')[0];
+      video.muted = true;
+      video.play();
+
+      //Video vollume control creation
+      if (e.detail.user !== user){
+        let vollumeController = document.createElement('span');
+        vollumeController.setAttribute('class', 'vollumeController');
+        document.getElementById(e.detail.user).append(vollumeController);
+        let vollumeRange = document.createElement('input');
+        vollumeRange.setAttribute('type', 'range');
+        vollumeRange.setAttribute('class', 'vollumeRange');
+        vollumeRange.setAttribute('min', '0');
+        vollumeRange.setAttribute('max', '100');
+        vollumeRange.setAttribute('value', '0');
+        vollumeRange.setAttribute('orient', 'vertical');
+
+        vollumeController.append(vollumeRange);
+        vollumeController.addEventListener('change', (e)=>{
+          if (video.muted){
+            video.muted = false;
+            video.volume = parseFloat(vollumeRange.value / 100);
+          } else {
+            video.volume = parseFloat(vollumeRange.value / 100);
+          }
+        });
+      }
+    });
+
     //Set user media
     navigator.mediaDevices.getUserMedia({
-      audio: false,
+      audio: true,
       video: {
         width: 300,
         height: 300,
@@ -38,20 +71,59 @@ function VideoGrid(props){
           let call = peer.call(userList[i], stream);
           
           call.on('stream', function(stream) {
-            addVideo(stream, userList[i]);
+            if (document.getElementById(userList[i]) === null){
+              addVideo(stream, userList[i]);
+            }
           });
         }
       }
-    }).catch(function(err) {
-      console.log(err);
+    }).catch(function() {
+
+      //USER HAVENT CAMERA
+      navigator.mediaDevices.getUserMedia({
+        audio: true,
+        video: false
+      }).then( stream => {
+        addVideo(stream, user);
+        mediaHandler = stream;
+  
+        for (let i = 0; i < userList.length; i++){
+          if (userList[i] !== user){
+            let call = peer.call(userList[i], stream);
+            
+            call.on('stream', function(stream) {
+              if (document.getElementById(userList[i]) === null){
+                addVideo(stream, userList[i]);
+              }
+            });
+          }
+        }
+      }).catch(function() {
+
+        //CLIENT HAVENT CAMERA AND MICROPHONE
+        for (let i = 0; i < userList.length; i++){
+          if (userList[i] !== user){
+            peer.connect(userList[i]);
+          }
+        }
+      });
     });
 
     peer.on('call', function (call) {
       call.answer(mediaHandler);
-      
+
       call.on('stream', function (stream) {
-        addVideo(stream, call.peer);
+        if (document.getElementById(call.peer) === null){
+          addVideo(stream, call.peer);
+        }
       });
+    });
+
+    //Call to a non video/audio user
+    peer.on('connection', function(conn) {
+      if (mediaHandler !== null){
+        peer.call(conn.peer, mediaHandler);
+      }
     });
 
     function addVideo(stream, id){
@@ -68,14 +140,31 @@ function VideoGrid(props){
 
       //Video element creation
       let video = document.createElement('video');
-      video.srcObject = stream;
-      video.setAttribute('autoPlay', true);
+
+      try {
+        video.setAttribute('width', '250');
+        video.setAttribute('height', '250');
+        video.srcObject = stream;
+      } catch (err) {
+        console.log(err);
+      }
+
+      if (id === user){
+        video.muted = true;
+      }
+
       document.getElementById(id).append(video);
+
+      //Start video event
+      let addedVideo = new CustomEvent('addedVideo', { detail: {user: id} });
+      document.dispatchEvent(addedVideo);
     }
 
     //Socket event
     socket.on('removeVideo',(id)=>{
-      document.getElementById(id).remove();
+      if (document.getElementById(id) !== null){
+        document.getElementById(id).remove();
+      }
     });
   },[]);
 

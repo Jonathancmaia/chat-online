@@ -4,6 +4,7 @@ import App from './App';
 import Room from './components/room';
 import NotFound from './components/notFound';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { style } from './reset-style.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
