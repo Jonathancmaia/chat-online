@@ -61,7 +61,6 @@ function Room (){
   const searchNickname = (id) => {
     let index;
 
-    console.log(nicknames)
     if (nicknames){
       index = nicknames.findIndex((obj) => {if (obj !== null) {
         return obj.user === id}

@@ -13,7 +13,6 @@ root.render(
     <Routes>
       <Route path='/' element={<App />} />
       <Route path='/:room' element={<Room />} />
-      <Route path='*' element={<NotFound />}></Route>
     </Routes>
   </BrowserRouter>
 );
