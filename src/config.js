@@ -7,7 +7,7 @@ if (dev) {
   socketServer = 'http://localhost:7000';
   peerServer = 'localhost';
 } else {
-  socketServer = 'http://free-chat-online.cf:7000';
+  socketServer = 'https://free-chat-online.cf:7000';
   peerServer = 'free-chat-online.cf';
 }
 

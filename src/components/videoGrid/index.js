@@ -18,7 +18,7 @@ function VideoGrid(props){
       host: Enviroment.peerServer,
       port: 9000,
       path: '/',
-      secure: false,
+      secure: true,
       debug: true
     });
 
