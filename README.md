@@ -2,6 +2,8 @@
 
 Free Chat Online is a peer-to-peer application. The purpose of this application is to connect users in a voice, video, and text chat. When the user enters a room, they will find other users who are in the same room and can interact with them.
 
+The entire app is compound by this app and background app (https://github.com/Jonathancmaia/api-chat-online).
+
 This app is in development stage, then, it's not so usable yet.
 
 # Technologies Used
