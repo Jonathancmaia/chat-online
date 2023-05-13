@@ -78,7 +78,7 @@ function Room (){
 
   return (
     <div className='room-container'>
-      <div className='header gray-text'>
+      <div className='header'>
         ROOM: {room}
       </div>
       <div className='cam-n-text-container'>

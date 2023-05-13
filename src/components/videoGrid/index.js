@@ -158,6 +158,38 @@ function VideoGrid(props){
       //Start video event
       let addedVideo = new CustomEvent('addedVideo', { detail: {user: id} });
       document.dispatchEvent(addedVideo);
+
+      //Create an AudioContext and AnalyserNode for the video stream
+      const audioContext = new AudioContext();
+      const source = audioContext.createMediaStreamSource(stream);
+      const analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+
+      source.connect(analyser);
+
+      //Create a function to calculate the sound level in decibels
+      function calculateDbLevel() {
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(dataArray);
+        const values = dataArray.reduce((acc, val) => acc + val, 0);
+        const average = values / dataArray.length;
+        const dbLevel = 20 * Math.log10(average / 128);
+        return dbLevel;
+      }
+
+      //Add a CSS class to the video element when the sound level reaches a certain threshold
+      const THRESHOLD_DB = -40;
+      const INTERVAL_MS = 100;
+      setInterval(() => {
+        const dbLevel = calculateDbLevel();
+        if (dbLevel > THRESHOLD_DB) {
+          video.classList.add('sound-active');
+          console.log(dbLevel)
+        } else {
+          video.classList.remove('sound-active');
+          console.log(dbLevel)
+        }
+      }, INTERVAL_MS);
     }
 
     //Socket event
