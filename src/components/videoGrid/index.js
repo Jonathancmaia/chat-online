@@ -188,10 +188,8 @@ function VideoGrid(props) {
         const dbLevel = calculateDbLevel();
         if (dbLevel > THRESHOLD_DB) {
           video.classList.add("sound-active");
-          console.log(dbLevel);
         } else {
           video.classList.remove("sound-active");
-          console.log(dbLevel);
         }
       }, INTERVAL_MS);
     }
