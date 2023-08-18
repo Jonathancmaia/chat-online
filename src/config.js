@@ -17,4 +17,5 @@ if (dev) {
 export default {
   socketServer: socketServer,
   peerServer: peerServer,
+  https: https,
 };
