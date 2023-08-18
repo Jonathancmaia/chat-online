@@ -8,7 +8,7 @@ if (dev) {
   peerServer = "localhost";
 } else {
   socketServer = "http://ec2-3-12-148-178.us-east-2.compute.amazonaws.com:7000";
-  peerServer = "free-chat-online.cf";
+  peerServer = "ec2-3-12-148-178.us-east-2.compute.amazonaws.com";
 }
 
 export default {
