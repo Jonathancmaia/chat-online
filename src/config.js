@@ -1,14 +1,14 @@
 const dev = false;
 
-let socketServer = '';
-let peerServer = '';
+let socketServer = "";
+let peerServer = "";
 
 if (dev) {
-  socketServer = 'http://localhost:7000';
-  peerServer = 'localhost';
+  socketServer = "http://localhost:7000";
+  peerServer = "localhost";
 } else {
-  socketServer = 'https://free-chat-online.cf:7000';
-  peerServer = 'free-chat-online.cf';
+  socketServer = "http://ec2-3-12-148-178.us-east-2.compute.amazonaws.com:7000";
+  peerServer = "free-chat-online.cf";
 }
 
 export default {
