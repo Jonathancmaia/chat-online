@@ -120,7 +120,7 @@ function Room (){
             <div id='chatContainer'>
               {
                 chat ?
-                chat.map((message) => <div 
+                chat.slice(0).reverse().map((message) => <div 
                   className={message.user === user ? 'userMessage' : 'othersMessage'}
                 >
                   <span className='sender-message'>{searchNickname(message.user)}</span>
