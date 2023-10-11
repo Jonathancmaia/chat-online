@@ -1,7 +1,7 @@
 #videoGrid {
   display: flex;
   flex-direction: row;
-  width: 70vw;
+  width: 70%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

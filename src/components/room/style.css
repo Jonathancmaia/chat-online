@@ -17,29 +17,29 @@ li {
 .room-container {
   display: flex;
   flex-direction: column;
-  width: 100vw;
   height: 100vh;
 }
 
 .header {
-  width: 100vw;
-  height: 5vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem 0rem 1rem 0rem;
 }
 
 .cam-n-text-container {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .text-container {
   display: flex;
   flex-direction: column;
-  height: 95vh;
-  width: 30vw;
-  padding: 0.5rem;
+  width: 30%;
+  height: 90%;
+  padding: 1rem;
 }
 
 .chat-header {
@@ -85,13 +85,14 @@ li {
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
+  height: 100%;
 }
 
 #chatContainer {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  height: 65vh;
+  height: 50%;
   overflow: auto;
 }
 
